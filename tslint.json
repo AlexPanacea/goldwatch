@@ -1,0 +1,48 @@
+{
+    "defaultSeverity": "warning",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "no-any": true,
+        "no-empty-interface": true,
+        "no-magic-numbers": true,
+        "member-access": true,
+        "no-console": false,
+        "ordered-imports": false,
+        "member-ordering": [
+            true,
+            {
+                "order": "fields-first"
+            }
+        ],
+        "curly": true,
+        "triple-equals": true,
+        "eofline": true,
+        "indent": [
+            true,
+            "spaces",
+            2
+        ],
+        "encoding": true,
+        "no-redundant-jsdoc": true,
+        "no-trailing-whitespace": true,
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "prefer-template": true,
+        "object-literal-sort-keys": false,
+        "trailing-comma": false,
+        "object-literal-shorthand": false
+    },
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "src/tests/**/*",
+            "dist",
+            "node_modules"
+        ]
+    }
+}
