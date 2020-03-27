@@ -13,6 +13,11 @@ gulp.task('copy-config', () => {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('copy-html', () => {
+  return gulp.src('./src/web/html/*')
+    .pipe(gulp.dest('./dist/web/html'));
+});
+
 // Tslint config is not included in this file, editors like Visual Studio Code automatically look for this file
 // and applies the rules to code, you then get feedback while writing code.
 gulp.task('lint', () => {
@@ -27,7 +32,7 @@ gulp.task('compile', () => {
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('build', gulp.series(['clean-dist', 'copy-config', 'lint', 'compile']));
+gulp.task('build', gulp.series(['clean-dist', 'copy-config', 'copy-html', 'lint', 'compile']));
 
 gulp.task('watch', (done) => {
   gulp.watch(['src/**/*.ts', '!src/tests/**/*.spec.ts'], gulp.series(['build']));

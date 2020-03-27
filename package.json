@@ -1,12 +1,11 @@
 {
   "name": "goldwatch",
   "version": "0.0.1",
-  "description": "\u0016",
+  "description": "A small tool to give an overview of Gold being gained and transported within a CMaNGOS server.",
   "main": "dist/main.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,8 +21,11 @@
     "url": "https://github.com/0x283A/goldwatch/issues"
   },
   "homepage": "https://github.com/0x283A/goldwatch#readme",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
+    "@types/express": "^4.17.3",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.5.0",
