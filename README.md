@@ -16,11 +16,10 @@ This is a work-in-progress, see the list below the current status, features and 
 
 ## MVP features
 
-*  :x: Overview of gold transaction
+*  :x: Overview of gold transactions
     * :x: Mail
     * :x: Auction house
     * :x: In-game inventory
-* :x: Overview of gold changes within the characters table.
 * :x: Overview of gold changes within the characters table.
 * :x: Alerts of uncommon transactions
 * :x: Configurable threshold defining uncommon gold-related behaviour.
