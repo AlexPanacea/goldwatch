@@ -1,8 +1,14 @@
 import { IConfiguration } from "./interfaces/IConfiguration";
+import { Connection, getConnection, getManager } from "typeorm";
+import { Characters } from "../entities/cmangos/Characters";
+import { Character } from "../entities/goldwatch/Character";
 
 export class GoldWatcher {
 
     public readonly config: IConfiguration;
+
+    private readonly cmangosDB: Connection;
+    private readonly goldWatchDB: Connection;
 
     private readonly MS_IN_SECOND = 1000;
     private readonly SECONDS_IN_MIN = 60;
@@ -27,7 +33,21 @@ export class GoldWatcher {
      * After analyzing it will store it's data into the SQLite DB.
      */
     private doCheck() {
-
-        console.log("I did my check.");
+        getManager("cmangosDB").find(Characters).then((characters) => {
+            try {
+                characters.forEach(character => {
+                    const saveCharSnapshot: Character = new Character();
+                    saveCharSnapshot.account = character.account;
+                    saveCharSnapshot.guid = character.guid;
+                    saveCharSnapshot.money = character.money;
+                    saveCharSnapshot.name = character.name;
+                    saveCharSnapshot.totaltime = character.totaltime;
+                    getManager("goldwatchDB").save(saveCharSnapshot);
+                });
+                console.log(`Saved ${characters.length} players!`);
+            } catch (e) {
+                console.error(`Failed reading players: ${e}`);
+            }
+        });
     }
 }

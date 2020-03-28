@@ -4,21 +4,34 @@ import { GoldWatcher } from "./app/GoldWatcher";
 import { HomeRouter } from "./web/routers/HomeRouter";
 import * as express from "express";
 import { IConfiguration } from "./app/interfaces/IConfiguration";
-import { createConnection } from "typeorm";
+import { createConnections } from "typeorm";
+import "reflect-metadata";
 
 (async () => {
 
-    createConnection({
+    createConnections([{
+        name: "goldwatchDB",
         type: "sqlite",
         database: "database.db",
         entities: [
-            `${__dirname}/entities/*.js`
+            `${__dirname}/entities/goldwatch/*.js`
         ],
         synchronize: true,
         logging: false
-    }).then(connection => {
-        // Do stuff.
-    }).catch(error => console.log(error));
+    }, {
+        name: "cmangosDB",
+        type: "mysql",
+        host: "192.168.1.16",
+        port: 3306,
+        username: "goldwatcher",
+        password: "goldwatch",
+        database: "wotlkcharacters",
+        entities: [
+            `${__dirname}/entities/cmangos/*.js`
+        ],
+        synchronize: false,
+        logging: false
+    }]).catch(error => console.log(error));
 
     // tslint:disable-next-line: no-var-requires
     const config: IConfiguration = require("./config.json") as IConfiguration;
@@ -28,7 +41,8 @@ import { createConnection } from "typeorm";
         process.exit();
     }
 
-    const goldWatcher: GoldWatcher = new GoldWatcher(config);
+    const goldWatcher: GoldWatcher =
+    new GoldWatcher(config);
 
     // Start express server is website setting is turned on.
     if (goldWatcher.config.website) {
