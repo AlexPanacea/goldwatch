@@ -1,38 +1,43 @@
 {
-  "name": "goldwatch",
-  "version": "0.0.1",
-  "description": "A small tool to give an overview of Gold being gained and transported within a CMaNGOS server.",
-  "main": "dist/main.js",
-  "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/0x283A/goldwatch.git"
-  },
-  "keywords": [
-    "goldwatch"
-  ],
-  "author": "0x283A",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/0x283A/goldwatch/issues"
-  },
-  "homepage": "https://github.com/0x283A/goldwatch#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.3",
-    "del": "^5.1.0",
-    "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.5.0",
-    "gulp-tslint": "^8.1.4",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "ts-node": "^8.8.1",
-    "tslint": "^6.1.0",
-    "typescript": "^3.8.3"
-  }
+   "name": "goldwatch",
+   "version": "0.0.2",
+   "description": "A small tool to give an overview of Gold being gained and transported within a CMaNGOS server.",
+   "main": "dist/main.js",
+   "scripts": {
+      "start": "gulp",
+      "build": "gulp build",
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/0x283A/goldwatch.git"
+   },
+   "keywords": [
+      "goldwatch"
+   ],
+   "author": "0x283A",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/0x283A/goldwatch/issues"
+   },
+   "homepage": "https://github.com/0x283A/goldwatch#readme",
+   "dependencies": {
+      "express": "^4.17.1",
+      "sqlite3": "^4.1.1",
+      "typeorm": "0.2.24",
+      "reflect-metadata": "^0.1.10"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.3",
+      "@types/sqlite3": "^3.1.6",
+      "del": "^5.1.0",
+      "gulp": "^4.0.2",
+      "gulp-nodemon": "^2.5.0",
+      "gulp-tslint": "^8.1.4",
+      "gulp-typescript": "^6.0.0-alpha.1",
+      "ts-node": "3.3.0",
+      "tslint": "^6.1.0",
+      "typescript": "3.3.3333",
+      "@types/node": "^8.0.29"
+   }
 }
