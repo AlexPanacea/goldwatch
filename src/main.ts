@@ -9,7 +9,7 @@ import "reflect-metadata";
 
 (async () => {
 
-    createConnections([{
+    await createConnections([{
         name: "goldwatchDB",
         type: "sqlite",
         database: "database.db",
@@ -31,7 +31,7 @@ import "reflect-metadata";
         ],
         synchronize: false,
         logging: false
-    }]).catch(error => console.log(error));
+    }]).catch(error => console.error(error));
 
     // tslint:disable-next-line: no-var-requires
     const config: IConfiguration = require("./config.json") as IConfiguration;
@@ -41,11 +41,10 @@ import "reflect-metadata";
         process.exit();
     }
 
-    const goldWatcher: GoldWatcher =
-    new GoldWatcher(config);
+    const goldWatcher: GoldWatcher = new GoldWatcher(config);
 
     // Start express server is website setting is turned on.
-    if (goldWatcher.config.website) {
+    if (config.website) {
         const app: express.Application = express();
         const port: number = 8888;
 

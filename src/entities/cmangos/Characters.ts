@@ -1,24 +1,47 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-
+// tslint:disable: variable-name
 @Entity()
 export class Characters extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    public guid: number;
+    public readonly guid: number;
 
     // @ManyToOne(type => Account, account => account.characters)
     // public account: Account;
 
     @Column()
-    public account: number;
+    public readonly account: number;
 
     @Column()
-    public name: string;
+    public readonly name: string;
 
     @Column()
-    public money: number;
+    public readonly money: number;
 
     @Column()
-    public totaltime: number;
+    public readonly totaltime: number;
 
+    @Column()
+    public readonly logout_time: number;
+
+    @Column()
+    public readonly online: number;
+
+    constructor(
+        guid: number,
+        account: number,
+        name: string,
+        money: number,
+        totaltime: number,
+        logout_time: number,
+        online: number) {
+        super();
+        this.guid = guid;
+        this.account = account;
+        this.name = name;
+        this.money = money;
+        this.totaltime = totaltime;
+        this.logout_time = logout_time;
+        this.online = online;
+    }
 }
