@@ -1,4 +1,5 @@
 {
-    "hello": "World",
-    "did": "it work?"
+    "mangosSaveInterval": "15",
+    "sqliteLocation": "database.db",
+    "website": true
 }

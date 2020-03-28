@@ -1,4 +1,5 @@
 export interface IConfiguration {
-    hello: string;
-    did: string;
+    mangosSaveInterval: number;
+    sqliteLocation: string;
+    website: boolean;
 }
