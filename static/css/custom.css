@@ -1,0 +1,20 @@
+html {
+  background-color: gray;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1000px;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+
+table {
+  width: 800px;
+}
+.overview th {
+  padding: 0.5em;
+}
+.overview td {
+  padding: 0.5em;
+}

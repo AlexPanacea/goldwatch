@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import { FormatMoney } from "../../web/utils/FormatMoney";
 @Entity()
 export class CharacterSnapshot extends BaseEntity {
 
@@ -30,5 +31,9 @@ export class CharacterSnapshot extends BaseEntity {
         this.money = money;
         this.totaltime = totaltime;
         this.snapshottime = Math.round(new Date().getTime() / this.ONE_SECOND);
+    }
+
+    public getFormattedMoney(): string {
+        return FormatMoney.format(this.money);
     }
 }

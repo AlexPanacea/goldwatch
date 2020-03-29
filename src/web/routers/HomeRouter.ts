@@ -1,11 +1,13 @@
 import * as express from "express";
-import { HomePage } from "../pages/HomePage";
+import { HomeService } from "../services/HomeService";
 const router = express.Router();
 
-const homePage: HomePage = new HomePage();
+const homeService: HomeService = new HomeService();
 
 router.get('/', (req, res) => {
-  res.send(homePage.render());
+  homeService.renderedPage().then((homeContent) => {
+    res.render('home', homeContent);
+  });
 });
 
 export const HomeRouter: express.Router = router;

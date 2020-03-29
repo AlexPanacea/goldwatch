@@ -24,6 +24,7 @@
    "dependencies": {
       "express": "^4.17.1",
       "mysql": "^2.18.1",
+      "pug-bootstrap": "0.0.16",
       "reflect-metadata": "^0.1.10",
       "sqlite3": "^4.1.1",
       "typeorm": "0.2.24"

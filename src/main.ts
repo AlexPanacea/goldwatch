@@ -5,6 +5,7 @@ import { HomeRouter } from "./web/routers/HomeRouter";
 import * as express from "express";
 import { IConfiguration } from "./app/interfaces/IConfiguration";
 import { createConnections } from "typeorm";
+import { AboutRouter } from "./web/routers/AboutRouter";
 import "reflect-metadata";
 
 (async () => {
@@ -52,7 +53,10 @@ import "reflect-metadata";
         const app: express.Application = express();
         const port: number = 8888;
 
+        app.set("view engine", "pug");
         app.use("/", HomeRouter);
+        app.use("/about", AboutRouter);
+        app.use(express.static("static"));
 
         app.listen(port, () => {
             console.log(`Web-interface hosted at http://127.0.0.1:${port}/`);
