@@ -17,10 +17,7 @@ export class GoldWatcher {
     ) {
         this.config = config;
         this.saveInterval = config.mangosSaveInterval * this.SECONDS_IN_MIN * this.MS_IN_SECOND;
-        console.log("GoldWatcher service is loaded with config:");
-        console.log(`\tmangosSaveInterval: ${this.config.mangosSaveInterval}`);
-        console.log(`\tsqliteLocation: ${this.config.sqliteLocation}`);
-        console.log(`\twebsite: ${this.config.website}`);
+        console.log("GoldWatcher service is running");
 
         setInterval((() => { this.snapShotPlayers(this.config); }), this.saveInterval);
         // ToDo: Fix this, it's not best-practice to guess it takes 1 second.
