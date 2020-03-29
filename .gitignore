@@ -7,5 +7,8 @@ notes.txt
 # Dependency directories
 node_modules/
 
+# package-lock file, don't need it.
+package-lock.json
+
 # Sqlite file(s)
 *.db
