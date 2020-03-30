@@ -21,10 +21,11 @@ export class CharacterSnapshot extends BaseEntity {
     private readonly ONE_SECOND = 1000;
 
     constructor(
-        guid: number,
-        name: string,
-        money: number,
-        totaltime: number) {
+            guid: number,
+            name: string,
+            money: number,
+            totaltime: number
+    ) {
         super();
         this.guid = guid;
         this.name = name;
