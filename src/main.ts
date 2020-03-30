@@ -19,7 +19,7 @@ import "reflect-metadata";
     await createConnections([{
         name: "goldwatchDB",
         type: "sqlite",
-        database: config.sqliteLocation,
+        database: config.sqlite.location,
         entities: [
             `${__dirname}/entities/goldwatch/*.js`
         ],
@@ -41,7 +41,7 @@ import "reflect-metadata";
     }]).catch(error => console.error(error));
 
     // Ugly way of type-checking the config to the interface.
-    if (!config.mangosSaveInterval || !config.sqliteLocation || !config.website) {
+    if (!config.mangosSaveInterval || !config.sqlite.location || !config.website) {
         console.log("Loading config failed, atleast one config not found.");
         process.exit();
     }

@@ -8,5 +8,8 @@
         "username": "goldwatcher",
         "password": "goldwatch",
         "database": "wotlkcharacters"
+    },
+    "sqlite": {
+        "location": "database.db"
     }
 }

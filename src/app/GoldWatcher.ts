@@ -30,13 +30,8 @@ export class GoldWatcher {
      * After analyzing it will store it's data into the SQLite DB.
      */
     private snapShotPlayers(config: IConfiguration) {
-        const saveIntervalInSeconds = config.mangosSaveInterval * this.SECONDS_IN_MIN;
-        const currentEpochSeconds = Math.round(new Date().getTime() / this.MS_IN_SECOND);
-        const withinSaveInterval = currentEpochSeconds - saveIntervalInSeconds;
-        getManager("cmangosDB")
-            .createQueryBuilder(Characters, "characters")
-            .where(`characters.logout_time > ${withinSaveInterval} OR online = 1`)
-            .getMany().then((characters) => {
+        Characters.findActiveWithinTime(config.mangosSaveInterval * this.SECONDS_IN_MIN)
+        .then((characters) => {
                 try {
                     characters.forEach(character => {
                         const saveCharSnapshot:

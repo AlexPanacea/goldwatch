@@ -1,8 +1,8 @@
 export interface IConfiguration {
     mangosSaveInterval: number;
-    sqliteLocation: string;
     website: boolean;
     mysql: IMySQLSettings;
+    sqlite: ISQLiteSettings;
 }
 
 export interface IMySQLSettings {
@@ -11,4 +11,8 @@ export interface IMySQLSettings {
     username: string;
     password: string;
     database: string;
+}
+
+export interface ISQLiteSettings {
+    location: string;
 }

@@ -3,14 +3,17 @@
 export class FormatMoney {
     public static format(money: number) {
         const moneyStr: string = String(money);
-        let formatted = moneyStr.substr(0, 2);
-        if (moneyStr.length === 2) {
-            return formatted;
+
+        const copper = moneyStr.substr(-2, 2);
+        if (moneyStr.length <= 2) {
+            return `${copper}c`;
         }
-        formatted = formatted.replace(/^/, `${moneyStr.substr(-2, 2)} `);
-        if (moneyStr.length === 4) {
-            return formatted;
+        const silver = (moneyStr.length === 3) ? moneyStr.substr(-3, 1) : moneyStr.substr(-4, 2);
+        if (moneyStr.length <= 4) {
+            return `${silver}s ${copper}c`;
         }
-        return formatted = formatted.replace(/^/, `${moneyStr.substr(0, moneyStr.length - 4)} `);
+
+        const gold = moneyStr.substr(0, moneyStr.length - 4);
+        return `${gold}g ${silver}s ${copper}c`;
     }
 }
