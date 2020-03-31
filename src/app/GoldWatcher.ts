@@ -2,6 +2,7 @@ import { IConfiguration } from "./interfaces/IConfiguration";
 import { getManager } from "typeorm";
 import { Characters } from "../entities/cmangos/Characters";
 import { CharacterSnapshot } from "../entities/goldwatch/CharacterSnapshot";
+import { FormatMoney } from "../web/utils/FormatMoney";
 
 export class GoldWatcher {
 

@@ -53,10 +53,10 @@ import "reflect-metadata";
         const app: express.Application = express();
         const port: number = 8888;
 
+        app.use(express.static("static"));
         app.set("view engine", "pug");
         app.use("/", HomeRouter);
         app.use("/about", AboutRouter);
-        app.use(express.static("static"));
 
         app.listen(port, () => {
             console.log(`Web-interface hosted at http://127.0.0.1:${port}/`);

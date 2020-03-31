@@ -13,6 +13,9 @@ export class Mail {
     public receiver: number;
 
     @Column()
+    public subject: string;
+
+    @Column()
     public money: number;
 
 }

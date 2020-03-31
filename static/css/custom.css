@@ -1,20 +1,12 @@
 html {
-  background-color: gray;
+  position: relative;
+  min-height: 100%;
 }
-
-body {
-  margin: 0 auto;
-  max-width: 1000px;
-  border-radius: 10px;
-  border: 1px solid #000;
-}
-
-table {
-  width: 800px;
-}
-.overview th {
-  padding: 0.5em;
-}
-.overview td {
-  padding: 0.5em;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #f5f5f5;
+  text-align: center;
 }
