@@ -1,0 +1,26 @@
+append styles
+	// Custom styles for this template
+	link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css', rel='stylesheet')
+	link(href='css/custom.css', rel='stylesheet')
+block body
+	+navbar("Goldwatch","navbar","inverse")
+		+nav_item("/") Home
+		+nav_item("/goldchanges", "active") Gold changes
+		+nav_item("/mail") Mail overview
+		+nav_item("/about") About
+	.container
+		.starter-template
+			h1 #{homeTitle}
+			p
+				table(class='overview' style='width:100% cell-', border='1')
+					tr
+						th Name
+						th Gold
+						th Playing time
+						each player in players
+							tr
+								td #{player.name}
+								td #{player.getFormattedMoney()}
+								td #{player.totaltime}
+		
+
