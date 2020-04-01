@@ -35,13 +35,14 @@ export class GoldWatcher {
         .then((characters) => {
                 try {
                     characters.forEach(character => {
-                        const saveCharSnapshot:
-                            CharacterSnapshot = new CharacterSnapshot(
+                        getManager("goldwatchDB").save(
+                            new CharacterSnapshot(
                                 character.guid,
                                 character.name,
                                 character.money,
-                                character.totaltime);
-                        getManager("goldwatchDB").save(saveCharSnapshot);
+                                character.totaltime
+                            )
+                        );
                     });
                     console.log(`Made ${characters.length} player snapshots.`);
                 } catch (e) {

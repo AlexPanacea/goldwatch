@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { FormatMoney } from "../../web/utils/FormatMoney";
+
 @Entity()
 export class CharacterSnapshot extends BaseEntity {
 

@@ -7,6 +7,8 @@ import { IConfiguration } from "./app/interfaces/IConfiguration";
 import { createConnections } from "typeorm";
 import { AboutRouter } from "./web/routers/AboutRouter";
 import "reflect-metadata";
+import { MailRouter } from "./web/routers/MailRouter";
+import { TransactionsRouter } from "./web/routers/TransactionsRouter";
 
 (async () => {
 
@@ -56,6 +58,8 @@ import "reflect-metadata";
         app.use(express.static("static"));
         app.set("view engine", "pug");
         app.use("/", HomeRouter);
+        app.use("/mail", MailRouter);
+        app.use("/transactions", TransactionsRouter);
         app.use("/about", AboutRouter);
 
         app.listen(port, () => {

@@ -6,7 +6,7 @@ const mailService: MailService = new MailService();
 
 router.get('/', (req, res) => {
   mailService.renderedPage().then((mailContent) => {
-    res.render('mail', mailContent);
+    res.render("mail", mailContent);
   });
 });
 
