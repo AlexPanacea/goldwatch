@@ -22,7 +22,7 @@ block content
 						each player in players
 							tr
 								th(scope="row") #{player.id}
-								td #{player.name}
+								td #{player.name} (#{player.level})
 								td #{player.getFormattedMoney()}
 								td #{player.getFormattedTotalTime()}
 								td #{player.getFormattedSnapshotTime()}
