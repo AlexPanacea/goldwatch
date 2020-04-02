@@ -6,9 +6,10 @@ export class HomeService {
     public async renderedPage(): Promise<IHomeContent> {
         const characters: CharacterSnapshot[] = await getManager("goldwatchDB")
             .createQueryBuilder(CharacterSnapshot, "characterSnapShots")
-            .orderBy("totaltime", "DESC")
+            .orderBy("snapshottime", "DESC")
             .groupBy("name")
             .getMany();
-        return Promise.resolve({homeTitle: "Player overview", about: "Hello wrld!", players: characters });
+        console.log(characters);
+        return Promise.resolve({players: characters });
     }
 }

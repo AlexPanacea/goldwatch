@@ -4,17 +4,25 @@ block content
 		h1 Goldwatch
 		p
 			span Thank you for using Goldwatch v#{version}!
-			span.badge.badge-secondary  Update!
+				span.badge.badge-secondary  
+					a(href="yo") Update!
 		p This software is MIT licenced and still in beta.
 
 	p
-		table(class='overview' style='width:100% cell-', border='1')
-			tr
-				th Name
-				th Gold
-				th Playing time
-				each player in players
-					tr
-						td #{player.name}
-						td #{player.getFormattedMoney()}
-						td #{player.totaltime}
+				h1 Last 10 player-snapshots
+				table.table
+					thead
+						tr
+							th(scope="col") id
+							th(scope="col") Name
+							th(scope="col") Gold
+							th(scope="col") Playing time
+							th(scope="col") Snapshotted at
+					tbody
+						each player in players
+							tr
+								th(scope="row") #{player.id}
+								td #{player.name}
+								td #{player.getFormattedMoney()}
+								td #{player.getFormattedTotalTime()}
+								td #{player.getFormattedSnapshotTime()}

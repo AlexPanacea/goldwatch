@@ -1,8 +1,7 @@
 import { IConfiguration } from "./interfaces/IConfiguration";
 import { getManager } from "typeorm";
-import { Characters } from "../entities/cmangos/Characters";
 import { CharacterSnapshot } from "../entities/goldwatch/CharacterSnapshot";
-import { FormatMoney } from "../web/utils/FormatMoney";
+import { Characters } from "../entities/cmangos/Characters";
 
 export class GoldWatcher {
 
@@ -39,6 +38,7 @@ export class GoldWatcher {
                             new CharacterSnapshot(
                                 character.guid,
                                 character.name,
+                                character.level,
                                 character.money,
                                 character.totaltime
                             )

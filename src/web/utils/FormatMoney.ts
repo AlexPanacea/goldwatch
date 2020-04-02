@@ -1,7 +1,7 @@
 // tslint:disable: no-magic-numbers
 
 export class FormatMoney {
-    public static format(money: number) {
+    public static format(money: number): string {
         const moneyStr: string = String(money);
 
         const copper = moneyStr.substr(-2, 2);

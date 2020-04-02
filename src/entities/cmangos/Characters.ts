@@ -1,9 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getManager } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getManager, OneToMany, Table, PrimaryColumn } from "typeorm";
+import { Mail } from "./Mail";
 // tslint:disable: variable-name
 @Entity()
 export class Characters extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     public readonly guid: number;
 
     // @ManyToOne(type => Account, account => account.characters)
@@ -14,6 +15,9 @@ export class Characters extends BaseEntity {
 
     @Column()
     public readonly name: string;
+
+    @Column()
+    public readonly level: number;
 
     @Column()
     public readonly money: number;

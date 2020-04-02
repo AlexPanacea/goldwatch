@@ -1,23 +1,22 @@
 extends layout.pug
 block content
 	p
-		h1 #{homeTitle}
+		h3 25 latest money containing mails
 		p
-			table(class='overview' style='width:100% cell-', border='1')
-				tr
-					th To
-					th From
-					th Amount
-					th Date
+			table.table
+				thead
+					tr
+						th(scope="col") id
+						th(scope="col") From
+						th(scope="col") To
+						th(scope="col") Subject
+						th(scope="col") Amount
+				tbody
+					each mail in mails
 						tr
-							td todo
-							td todo
-							td todo
-							td todo
-					//- each player in players
-					//- 	tr
-					//- 		td #{player.name}
-					//- 		td #{player.getFormattedMoney()}
-					//- 		td #{player.totaltime}
-	
+							th(scope="row") #{mail.id}
+							td #{mail.sender}
+							td #{mail.receiver}
+							td #{mail.subject}
+							td #{mail.getFormattedMoney()}
 
