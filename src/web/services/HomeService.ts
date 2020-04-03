@@ -7,7 +7,8 @@ export class HomeService {
         const characters: CharacterSnapshot[] = await getManager("goldwatchDB")
             .createQueryBuilder(CharacterSnapshot, "characterSnapShots")
             .orderBy("snapshottime", "DESC")
-            .groupBy("name")
+            // tslint:disable-next-line: no-magic-numbers
+            .limit(10)
             .getMany();
         console.log(characters);
         return Promise.resolve({players: characters });

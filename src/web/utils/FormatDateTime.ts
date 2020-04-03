@@ -17,6 +17,6 @@ export class FormatDateTime {
     }
 
     private static prependZero(int: number): string {
-        return (int < 9) ? `0${int}` : `${int}`;
+        return (int <= 9) ? `0${int}` : `${int}`;
     }
 }
