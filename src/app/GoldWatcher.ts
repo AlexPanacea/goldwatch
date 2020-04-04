@@ -21,7 +21,11 @@ export class GoldWatcher {
 
         setInterval((() => { this.snapShotPlayers(this.config); }), this.saveInterval);
         // ToDo: Fix this, it's not best-practice to guess it takes 1 second.
-        setTimeout((() => { this.snapShotPlayers(this.config); }), this.MS_IN_SECOND);
+        setTimeout((async () => {
+            await this.snapShotPlayers(this.config);
+            console.log('Task is done.');
+            this.tryout();
+        }), this.MS_IN_SECOND);
     }
 
     /**
@@ -29,9 +33,9 @@ export class GoldWatcher {
      * This method load data from the mangosdatabase and analyzes it.
      * After analyzing it will store it's data into the SQLite DB.
      */
-    private snapShotPlayers(config: IConfiguration) {
-        Characters.findActiveWithinTime(config.mangosSaveInterval * this.SECONDS_IN_MIN)
-        .then((characters) => {
+    private snapShotPlayers(config: IConfiguration): Promise<void> {
+        return Characters.findActiveWithinTime(config.mangosSaveInterval * this.SECONDS_IN_MIN)
+            .then((characters) => {
                 try {
                     characters.forEach(character => {
                         getManager("goldwatchDB").save(
@@ -47,7 +51,17 @@ export class GoldWatcher {
                     console.log(`Made ${characters.length} player snapshots.`);
                 } catch (e) {
                     console.error(`Failed reading players: ${e}`);
+                    return Promise.reject(e);
                 }
             });
+    }
+
+    private indexBalanceChanges() {
+        // Method will do:
+            // Select the latest snapshots
+                // Limit by x amount of snapshot for each player
+            // Group the result.
+            // See change from begin till end/
+            // Save that data back to the SQLite DB.
     }
 }

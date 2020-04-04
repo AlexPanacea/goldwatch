@@ -1,6 +1,10 @@
 {
     "mangosSaveInterval": "15",
-    "website": true,
+    "website": {
+        "enabled": true,
+        "homePageSnapShots": 10,
+        "showMailAmount": 25
+    },
     "mysql": {
         "host": "192.168.1.16",
         "port": 3306,

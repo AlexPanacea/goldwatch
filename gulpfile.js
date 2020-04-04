@@ -13,6 +13,11 @@ gulp.task('copy-config', () => {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('copy-package.json', () => {
+    return gulp.src('./package.json')
+      .pipe(gulp.dest('./dist'));
+  });
+
 gulp.task('copy-html', () => {
   return gulp.src('./src/web/html/*')
     .pipe(gulp.dest('./dist/web/html'));
@@ -32,7 +37,7 @@ gulp.task('compile', () => {
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('build', gulp.series(['clean-dist', 'copy-config', 'copy-html', 'lint', 'compile']));
+gulp.task('build', gulp.series(['clean-dist', 'copy-config', 'copy-package.json', 'copy-html', 'lint', 'compile']));
 
 gulp.task('watch', (done) => {
   gulp.watch(['src/**/*.ts', '!src/tests/**/*.spec.ts'], gulp.series(['build']));

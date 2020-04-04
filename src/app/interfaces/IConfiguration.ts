@@ -1,11 +1,17 @@
 export interface IConfiguration {
     mangosSaveInterval: number;
-    website: boolean;
+    website: IWebsiteSetting;
     mysql: IMySQLSettings;
     sqlite: ISQLiteSettings;
 }
 
-export interface IMySQLSettings {
+interface IWebsiteSetting {
+    enabled: boolean;
+    homePageSnapShots: number;
+    showMailAmount: number;
+}
+
+interface IMySQLSettings {
     host: string;
     port: number;
     username: string;
@@ -13,6 +19,6 @@ export interface IMySQLSettings {
     database: string;
 }
 
-export interface ISQLiteSettings {
+interface ISQLiteSettings {
     location: string;
 }

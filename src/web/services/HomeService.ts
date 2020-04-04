@@ -1,23 +1,24 @@
 import { IHomeContent } from "../interfaces/IHomeContent";
 import { getManager } from "typeorm";
 import { CharacterSnapshot } from "../../entities/goldwatch/CharacterSnapshot";
+import { IConfiguration } from "../../app/interfaces/IConfiguration";
 
 export class HomeService {
 
-    private version: string;
+    private readonly config: IConfiguration;
+    private readonly version: string;
 
     constructor() {
-        this.version = require("../../../package.json").version;
-        console.log(this.version);
+        this.config = require("../../config.json");
+        this.version = require("../../package.json").version;
     }
 
     public async renderedPage(): Promise<IHomeContent> {
         const characters: CharacterSnapshot[] = await getManager("goldwatchDB")
             .createQueryBuilder(CharacterSnapshot, "characterSnapShots")
             .orderBy("snapshottime", "DESC")
-            // tslint:disable-next-line: no-magic-numbers
-            .limit(10)
+            .limit(this.config.website.homePageSnapShots)
             .getMany();
-        return Promise.resolve({ version: this.version, players: characters });
+        return Promise.resolve({ viewSnapShots: this.config.website.homePageSnapShots, version: this.version, players: characters });
     }
 }
