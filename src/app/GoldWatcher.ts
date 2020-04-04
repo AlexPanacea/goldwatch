@@ -24,7 +24,7 @@ export class GoldWatcher {
         setTimeout((async () => {
             await this.snapShotPlayers(this.config);
             console.log('Task is done.');
-            this.tryout();
+            this.indexBalanceChanges();
         }), this.MS_IN_SECOND);
     }
 
