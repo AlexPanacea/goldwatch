@@ -3,6 +3,14 @@ import { getManager } from "typeorm";
 import { CharacterSnapshot } from "../../entities/goldwatch/CharacterSnapshot";
 
 export class HomeService {
+
+    private version: string;
+
+    constructor() {
+        this.version = require("../../../package.json").version;
+        console.log(this.version);
+    }
+
     public async renderedPage(): Promise<IHomeContent> {
         const characters: CharacterSnapshot[] = await getManager("goldwatchDB")
             .createQueryBuilder(CharacterSnapshot, "characterSnapShots")
@@ -10,7 +18,6 @@ export class HomeService {
             // tslint:disable-next-line: no-magic-numbers
             .limit(10)
             .getMany();
-        console.log(characters);
-        return Promise.resolve({players: characters });
+        return Promise.resolve({ version: this.version, players: characters });
     }
 }
