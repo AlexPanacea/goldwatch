@@ -19,11 +19,13 @@ export class GoldWatcher {
         this.saveInterval = config.mangosSaveInterval * this.SECONDS_IN_MIN * this.MS_IN_SECOND;
         console.log("GoldWatcher service is running");
 
-        setInterval((() => { this.snapShotPlayers(this.config); }), this.saveInterval);
+        setInterval((async () => {
+            await this.snapShotPlayers(this.config);
+            this.indexBalanceChanges();
+        }), this.saveInterval);
         // ToDo: Fix this, it's not best-practice to guess it takes 1 second.
         setTimeout((async () => {
             await this.snapShotPlayers(this.config);
-            console.log('Task is done.');
             this.indexBalanceChanges();
         }), this.MS_IN_SECOND);
     }
@@ -58,10 +60,10 @@ export class GoldWatcher {
 
     private indexBalanceChanges() {
         // Method will do:
-            // Select the latest snapshots
-                // Limit by x amount of snapshot for each player
-            // Group the result.
-            // See change from begin till end/
-            // Save that data back to the SQLite DB.
+        // Select the latest snapshots
+        // Limit by x amount of snapshot for each player
+        // Group the result.
+        // See change from begin till end/
+        // Save that data back to the SQLite DB.
     }
 }

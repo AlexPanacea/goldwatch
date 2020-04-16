@@ -3,7 +3,8 @@
     "website": {
         "enabled": true,
         "homePageSnapShots": 10,
-        "showMailAmount": 25
+        "listXLatestMails": 25,
+        "showMailAboveAmount": 100
     },
     "mysql": {
         "host": "192.168.1.16",
