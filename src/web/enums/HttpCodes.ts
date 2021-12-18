@@ -1,4 +1,4 @@
 export enum HttpCodes {
-    OK = 200,
-    NOT_FOUND = 404
+	OK = 200,
+	NOT_FOUND = 404
 }

@@ -1,69 +1,69 @@
 // This file bootstraps the whole application.
-
+// tslint:disable: no-magic-numbers
 import { GoldWatcher } from "./app/GoldWatcher";
 import { HomeRouter } from "./web/routers/HomeRouter";
 import * as express from "express";
 import { IConfiguration } from "./app/interfaces/IConfiguration";
-import { createConnections } from "typeorm";
+import { createConnections, ReturningStatementNotSupportedError } from "typeorm";
 import { AboutRouter } from "./web/routers/AboutRouter";
 import "reflect-metadata";
 import { MailRouter } from "./web/routers/MailRouter";
 import { TransactionsRouter } from "./web/routers/TransactionsRouter";
+import { FormatMoney } from "./web/utils/FormatMoney";
 
 (async () => {
+	// tslint:disable-next-line: no-var-requires
+	const config: IConfiguration = require("./config.json") as IConfiguration;
 
-    // tslint:disable-next-line: no-var-requires
-    const config: IConfiguration = require("./config.json") as IConfiguration;
+	console.log("Config loaded:");
+	console.log(config);
 
-    console.log("Config loaded:");
-    console.log(config);
+	await createConnections([{
+		name: "goldwatchDB",
+		type: "sqlite",
+		database: config.sqlite.location,
+		entities: [
+			`${__dirname}/entities/goldwatch/*.js`
+		],
+		synchronize: true,
+		logging: false
+	}, {
+		name: "cmangosDB",
+		type: "mysql",
+		host: config.mysql.host,
+		port: config.mysql.port,
+		username: config.mysql.username,
+		password: config.mysql.password,
+		database: config.mysql.database,
+		entities: [
+			`${__dirname}/entities/cmangos/*.js`
+		],
+		synchronize: false,
+		logging: false
+	}]).catch(error => console.error(error));
 
-    await createConnections([{
-        name: "goldwatchDB",
-        type: "sqlite",
-        database: config.sqlite.location,
-        entities: [
-            `${__dirname}/entities/goldwatch/*.js`
-        ],
-        synchronize: true,
-        logging: false
-    }, {
-        name: "cmangosDB",
-        type: "mysql",
-        host: config.mysql.host,
-        port: config.mysql.port,
-        username: config.mysql.username,
-        password: config.mysql.password,
-        database: config.mysql.database,
-        entities: [
-            `${__dirname}/entities/cmangos/*.js`
-        ],
-        synchronize: false,
-        logging: false
-    }]).catch(error => console.error(error));
+	// Ugly way of type-checking the config to the interface.
+	if (!config.mangosSaveInterval || !config.sqlite.location || !config.website) {
+		console.log("Loading config failed, atleast one config not found.");
+		process.exit();
+	}
 
-    // Ugly way of type-checking the config to the interface.
-    if (!config.mangosSaveInterval || !config.sqlite.location || !config.website) {
-        console.log("Loading config failed, atleast one config not found.");
-        process.exit();
-    }
+	const goldWatcher: GoldWatcher = new GoldWatcher(config);
 
-    const goldWatcher: GoldWatcher = new GoldWatcher(config);
+	// Start express server is website setting is turned on.
+	if (config.website) {
+		const app: express.Application = express();
+		const port: number = 8888;
 
-    // Start express server is website setting is turned on.
-    if (config.website) {
-        const app: express.Application = express();
-        const port: number = 8888;
+		app.use(express.static("static"));
+		app.set("view engine", "pug");
+		app.use("/", HomeRouter);
+		app.use("/mail", MailRouter);
+		app.use("/transactions", TransactionsRouter);
+		app.use("/about", AboutRouter);
 
-        app.use(express.static("static"));
-        app.set("view engine", "pug");
-        app.use("/", HomeRouter);
-        app.use("/mail", MailRouter);
-        app.use("/transactions", TransactionsRouter);
-        app.use("/about", AboutRouter);
-
-        app.listen(port, () => {
-            console.log(`Web-interface hosted at http://127.0.0.1:${port}/`);
-        });
-    }
+		app.listen(port, () => {
+			console.log(`Web-interface hosted at http://127.0.0.1:${port}/`);
+		});
+	}
 })();

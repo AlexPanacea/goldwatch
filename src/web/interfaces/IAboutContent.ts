@@ -1,3 +1,3 @@
 export interface IAboutContent {
-    // No content yet.
+	// No content yet.
 }

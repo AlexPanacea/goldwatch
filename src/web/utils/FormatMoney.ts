@@ -1,19 +1,17 @@
 // tslint:disable: no-magic-numbers
 
 export class FormatMoney {
-    public static format(money: number): string {
-        const moneyStr: string = String(money);
 
-        const copper = moneyStr.substr(-2, 2);
-        if (moneyStr.length <= 2) {
-            return `${copper}c`;
-        }
-        const silver = (moneyStr.length === 3) ? moneyStr.substr(-3, 1) : moneyStr.substr(-4, 2);
-        if (moneyStr.length <= 4) {
-            return `${silver}s ${copper}c`;
-        }
+	public static format(money: number): string {
+		let moneyStr: string = `${`0${money}`.slice(-2)}c`;
 
-        const gold = moneyStr.substr(0, moneyStr.length - 4);
-        return `${gold}g ${silver}s ${copper}c`;
-    }
+		if (money > 99) {
+			moneyStr = `${`0${Math.floor(money % 10000 / 100)}`.slice(-2)}s ${moneyStr}`;
+		}
+		if (money > 9999) {
+			moneyStr = `${Math.floor(money / 10000)}g ${moneyStr}`;
+		}
+
+		return moneyStr;
+	}
 }
