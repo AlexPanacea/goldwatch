@@ -22,8 +22,7 @@
         "eofline": true,
         "indent": [
             true,
-            "spaces",
-            2
+            "tabs"
         ],
         "encoding": true,
         "no-redundant-jsdoc": true,
