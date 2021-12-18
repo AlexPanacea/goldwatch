@@ -9,3 +9,6 @@ node_modules/
 
 # Sqlite file(s)
 *.db
+
+# TMP Config file
+src/config.json
