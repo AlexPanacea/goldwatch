@@ -1,6 +1,6 @@
 {
    "name": "goldwatch",
-   "version": "0.0.2",
+   "version": "0.2.0",
    "description": "A small tool to give an overview of Gold being gained and transported within a CMaNGOS server.",
    "main": "dist/main.js",
    "scripts": {

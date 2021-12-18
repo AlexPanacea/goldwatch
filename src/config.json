@@ -7,10 +7,10 @@
         "showMailAboveAmount": 100
     },
     "mysql": {
-        "host": "192.168.1.16",
+        "host": "",
         "port": 3306,
-        "username": "goldwatcher",
-        "password": "goldwatch",
+        "username": "",
+        "password": "",
         "database": "wotlkcharacters"
     },
     "sqlite": {
