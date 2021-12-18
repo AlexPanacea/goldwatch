@@ -39,7 +39,6 @@
       "gulp-tslint": "^8.1.4",
       "gulp-typescript": "^6.0.0-alpha.1",
       "ts-node": "10.4.0",
-      "tslint": "^6.1.1",
       "typescript": "4.5.4"
    }
 }
