@@ -9,7 +9,6 @@ import { AboutRouter } from "./web/routers/AboutRouter";
 import "reflect-metadata";
 import { MailRouter } from "./web/routers/MailRouter";
 import { TransactionsRouter } from "./web/routers/TransactionsRouter";
-import { FormatMoney } from "./web/utils/FormatMoney";
 
 (async () => {
 	// tslint:disable-next-line: no-var-requires

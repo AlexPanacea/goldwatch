@@ -11,4 +11,4 @@ node_modules/
 *.db
 
 # TMP Config file
-src/config.json
+src/**/*.json

@@ -49,7 +49,6 @@ export class CharacterSnapshot extends BaseEntity {
 	}
 
 	public getFormattedTotalTime(): string {
-		// tslint:disable-next-line: no-magic-numbers
 		return FormatDateTime.secondsToTime(this.totaltime);
 	}
 
