@@ -1,5 +1,6 @@
 export interface IConfiguration {
-	mangosSaveInterval: number;
+	playerSnapshotInterval: number;
+	serverSnapshotInterval: number;
 	website: IWebsiteSetting;
 	mysql: IMySQLSettings;
 	sqlite: ISQLiteSettings;

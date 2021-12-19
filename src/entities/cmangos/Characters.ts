@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, getManager, OneToMany, Table, PrimaryColumn } from "typeorm";
-import { Mail } from "./Mail";
+import { Entity, Column, BaseEntity, getManager, OneToMany, Table, PrimaryColumn } from "typeorm";
 // tslint:disable: variable-name
 @Entity()
 export class Characters extends BaseEntity {
@@ -57,4 +56,5 @@ export class Characters extends BaseEntity {
 			.where(`characters.logout_time > ${currentEpochSeconds - timeSpanSeconds} OR online = 1`)
 			.getMany();
 	}
+
 }
