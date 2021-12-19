@@ -1,7 +1,4 @@
 // tslint:disable: no-magic-numbers
-
-import { raw } from "express";
-
 export class FormatDateTime {
 	public static epochToDate(epochSeconds: number): string {
 		return new Date(epochSeconds * 1000).toLocaleTimeString();
