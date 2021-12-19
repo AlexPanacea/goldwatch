@@ -11,7 +11,6 @@ export class GoldWatcher {
 	private readonly playerSnapshotInterval: number;
 	private readonly serverSnapshotInterval: number;
 
-
 	private readonly MS_IN_SECOND: number = 1000;
 	private readonly SECONDS_IN_MIN: number = 60;
 

@@ -40,7 +40,7 @@ export class ServerSnapshot extends BaseEntity {
 		const players = await getManager("cmangosDB").createQueryBuilder(Characters, "characters")
 			.getMany();
 		let money: number = 0;
-		let played: number = 0; 
+		let played: number = 0;
 		for (const player of players) {
 			money += player.money;
 			played += player.totaltime;
