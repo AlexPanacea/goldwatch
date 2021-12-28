@@ -16,7 +16,8 @@ This is a work-in-progress, see the list below the current status, features and 
 
 ## MVP features
 
-* :x: Overview of mail-gold transactions
+* :white_check_mark: Saving of 'player-snapshots' in order to track changes.
+* :white_check_mark: Overview of mail-gold transactions
 * :x: Overview of gold changes within the characters table.
 * :x: Alerts of uncommon transactions
 * :x: Configurable threshold defining uncommon gold-related behaviour.
