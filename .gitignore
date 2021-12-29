@@ -12,4 +12,3 @@ node_modules/
 
 # TMP Config file
 src/**/*.json
-src/config.json
