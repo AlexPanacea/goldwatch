@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "ES2020",
     "moduleResolution": "node",
     "isolatedModules": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": true,
     "removeComments": true,
-    "noLib": false,
+    // "noLib": false,
     "preserveConstEnums": true,
     "allowJs": false,
     "suppressImplicitAnyIndexErrors": false,
     "outDir": "./dist",
-    "keyofStringsOnly": true
+    "keyofStringsOnly": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
   }
 }

@@ -5,7 +5,7 @@ export interface IConfiguration {
 	sqlite: ISQLiteSettings;
 }
 
-interface IWebsiteSetting {
+export interface IWebsiteSetting {
 	enabled: boolean;
 	homePageSnapShots: number;
 	showMailAmount: number;

@@ -1,16 +1,16 @@
 {
-    "mangosSaveInterval": "15",
+    "mangosSaveInterval": 10,
     "website": {
         "enabled": true,
         "homePageSnapShots": 10,
         "listXLatestMails": 25,
-        "showMailAboveAmount": 100
+        "showMailAmount": 100
     },
     "mysql": {
-        "host": "",
-        "port": 3306,
-        "username": "",
-        "password": "",
+        "host": "127.0.0.1",
+        "port": 3310,
+        "username": "root",
+        "password": "123456",
         "database": "wotlkcharacters"
     },
     "sqlite": {

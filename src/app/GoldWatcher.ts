@@ -1,7 +1,7 @@
-import { IConfiguration } from "./interfaces/IConfiguration";
+import { IConfiguration } from "./interfaces/IConfiguration.js";
 import { getManager } from "typeorm";
-import { CharacterSnapshot } from "../entities/goldwatch/CharacterSnapshot";
-import { Characters } from "../entities/cmangos/Characters";
+import { CharacterSnapshot } from "../entities/goldwatch/CharacterSnapshot.js";
+import { Characters } from "../entities/cmangos/Characters.js";
 
 export class GoldWatcher {
 

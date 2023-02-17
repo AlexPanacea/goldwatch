@@ -1,11 +1,12 @@
-var gulp = require("gulp");
-var ts = require("gulp-typescript");
-var nodemon = require("gulp-nodemon");
-var tslint = require("gulp-tslint");
-var del = require("del");
+import gulp from "gulp";
+import ts from "gulp-typescript";
+import nodemon from "gulp-nodemon";
+// var tslint = require("gulp-tslint");
+import tslintPlugin from "gulp-tslint";
+import { deleteAsync } from "del";
 
 gulp.task('clean-dist', () => {
-  return del('./dist');
+  return deleteAsync('./dist');
 });
 
 gulp.task('copy-config', () => {
@@ -27,14 +28,16 @@ gulp.task('copy-html', () => {
 // and applies the rules to code, you then get feedback while writing code.
 gulp.task('lint', () => {
   return gulp.src('./src/**/*.ts')
-    .pipe(tslint())
-    .pipe(tslint.report());
+    .pipe(tslintPlugin())
+    .pipe(tslintPlugin.report());
 });
 
 gulp.task('compile', () => {
-  return gulp.src(['src/**/*.ts', '!src/tests/**/*.spec.ts'])
-    .pipe(ts(require('./tsconfig.json').compilerOptions))
-    .pipe(gulp.dest('./dist'))
+  var tsProject = ts.createProject('tsconfig.json');
+  var tsResult = gulp.src(['src/**/*.ts', '!src/tests/**/*.spec.ts'])
+  .pipe(tsProject());
+
+  return tsResult.js.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('build', gulp.series(['clean-dist', 'copy-config', 'copy-package.json', 'copy-html', 'lint', 'compile']));

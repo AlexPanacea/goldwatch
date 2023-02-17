@@ -1,15 +1,13 @@
 extends layout.pug
 block content
 	p
-		table(class='overview' style='width:100% cell-', border='1')
+		table.table
 			tr
-				th To
-				th From
-				th Amount
-				th Transaction-type
+				th Name
+				th Money
+				th Change
 				each transaction in transactions
 					tr
-						td #{transaction.to}
-						td #{transaction.from}
-						td #{transaction.amount}
-						td #{transaction.type}
+						td #{transaction.name} (#{transaction.level})
+						td #{transaction.money}
+						td #{transaction.change}%

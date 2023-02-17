@@ -1,6 +1,6 @@
 import { Entity, Column, BaseEntity, PrimaryColumn } from "typeorm";
-import { FormatMoney } from "../../web/utils/FormatMoney";
-import { FormatDateTime } from "../../web/utils/FormatDateTime";
+import { FormatMoney } from "../../web/utils/FormatMoney.js";
+import { FormatDateTime } from "../../web/utils/FormatDateTime.js";
 
 @Entity()
 export class CharacterSnapshot extends BaseEntity {

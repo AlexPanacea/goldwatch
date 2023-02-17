@@ -1,28 +1,40 @@
 // This file bootstraps the whole application.
 // tslint:disable: no-magic-numbers
-import { GoldWatcher } from "./app/GoldWatcher";
-import { HomeRouter } from "./web/routers/HomeRouter";
-import * as express from "express";
-import { IConfiguration } from "./app/interfaces/IConfiguration";
+import { GoldWatcher } from "./app/GoldWatcher.js";
+import { HomeRouter } from "./web/routers/HomeRouter.js";
+import express from "express";
+import { IConfiguration } from "./app/interfaces/IConfiguration.js";
 import { createConnections, ReturningStatementNotSupportedError } from "typeorm";
-import { AboutRouter } from "./web/routers/AboutRouter";
+import { AboutRouter } from "./web/routers/AboutRouter.js";
 import "reflect-metadata";
-import { MailRouter } from "./web/routers/MailRouter";
-import { TransactionsRouter } from "./web/routers/TransactionsRouter";
+import { MailRouter } from "./web/routers/MailRouter.js";
+import { TransactionsRouter } from "./web/routers/TransactionsRouter.js";
+// import JsonConfig from './config.json';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 (async () => {
-	// tslint:disable-next-line: no-var-requires
-	const config: IConfiguration = require("./config.json") as IConfiguration;
+	// tslint:disable-next-line
+	const __filename = fileURLToPath(import.meta.url);
+	// tslint:disable-next-line
+	const __dirname = path.dirname(__filename);
+
+	const rawdata = fs.readFileSync(`${__dirname}\\config.json`);
+	const config: IConfiguration = JSON.parse(rawdata.toString());
 
 	console.log("Config loaded:");
+	console.log(__dirname);
 	console.log(config);
+	console.log(`${__dirname}\\entities\\goldwatch\\*.js`);
 
 	await createConnections([{
 		name: "goldwatchDB",
 		type: "sqlite",
 		database: config.sqlite.location,
 		entities: [
-			`${__dirname}/entities/goldwatch/*.js`
+			`${__dirname}\\entities\\goldwatch\\CharacterSnapshot.js`,
+			`${__dirname}\\entities\\goldwatch\\Transaction.js`
 		],
 		synchronize: true,
 		logging: false
@@ -35,7 +47,7 @@ import { TransactionsRouter } from "./web/routers/TransactionsRouter";
 		password: config.mysql.password,
 		database: config.mysql.database,
 		entities: [
-			`${__dirname}/entities/cmangos/*.js`
+			`${__dirname}\\entities\\cmangos\\*.js`
 		],
 		synchronize: false,
 		logging: false

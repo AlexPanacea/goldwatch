@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
-import { FormatMoney } from "../../web/utils/FormatMoney";
+import { FormatMoney } from "../../web/utils/FormatMoney.js";
 
 @Entity()
 export class Mail {

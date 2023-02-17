@@ -1,5 +1,5 @@
 import * as express from "express";
-import { AboutService } from "../services/AboutService";
+import { AboutService } from "../services/AboutService.js";
 const router = express.Router();
 
 const aboutService: AboutService = new AboutService();

@@ -1,4 +1,4 @@
-import { CharacterSnapshot } from "../../entities/goldwatch/CharacterSnapshot";
+import { CharacterSnapshot } from "../../entities/goldwatch/CharacterSnapshot.js";
 
 export interface IHomeContent {
 	version: string;

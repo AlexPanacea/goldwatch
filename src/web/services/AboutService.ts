@@ -1,4 +1,4 @@
-import { IAboutContent } from "../interfaces/IAboutContent";
+import { IAboutContent } from "../interfaces/IAboutContent.js";
 
 export class AboutService {
 	public async renderedPage(): Promise<IAboutContent> {

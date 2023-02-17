@@ -1,14 +1,14 @@
 import { getManager } from "typeorm";
-import { IMailContent } from "../interfaces/IMailContent";
-import { Mail } from "../../entities/cmangos/Mail";
-import { IConfiguration } from "../../app/interfaces/IConfiguration";
+import { IMailContent } from "../interfaces/IMailContent.js";
+import { Mail } from "../../entities/cmangos/Mail.js";
+import { IConfiguration } from "../../app/interfaces/IConfiguration.js";
 
 export class MailService {
 
 	private readonly config: IConfiguration;
 
 	constructor() {
-		this.config = require("../../config.json");
+		// this.config = require("../../config.json");
 	}
 
 	public async renderedPage(): Promise<IMailContent> {
@@ -17,7 +17,7 @@ export class MailService {
 			.where("money > 0")
 			.orderBy("id", "DESC")
 			// tslint:disable-next-line: no-magic-numbers
-			.limit(this.config.website.showMailAmount)
+			.limit(25)
 			.getMany();
 		return Promise.resolve({ mails: latestMails });
 	}
